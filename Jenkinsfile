@@ -44,4 +44,11 @@ pipeline {
             }
         }
     }
+    post {
+        always {
+            mail to: 'p0ria@live.com',
+            subject: 'Completed Pipeline: ${currentBuild.fullDisplayName}',
+            body: 'Your build completed, please check: ${env.BUILD_URL}'
+        }
+    }
 }
