@@ -57,7 +57,7 @@ pipeline {
         }
 
         stage('Docker push') {
-            step {
+            steps {
                 sh 'docker push p0ria/calculator'
             }
         }
