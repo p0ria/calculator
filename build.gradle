@@ -3,7 +3,7 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
     id 'jacoco'
-	id 'checkstyle'
+    id 'checkstyle'
 }
 
 group = 'com.example'
@@ -17,10 +17,13 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'io.cucumber:cucumber-java:7.2.0'
+    testImplementation 'io.cucumber:cucumber-junit:7.2.0'
 }
 
-tasks.named('test') {
-    useJUnitPlatform()
+tasks.register('acceptanceTest', Test) {
+    include '**/acceptance/**'
+    systemProperties System.getProperties()
 }
 
 jacocoTestCoverageVerification {
@@ -31,4 +34,9 @@ jacocoTestCoverageVerification {
             }
         }
     }
+}
+
+test {
+    useJUnitPlatform()
+    exclude '**/acceptance/**'
 }
