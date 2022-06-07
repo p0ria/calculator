@@ -72,5 +72,12 @@ pipeline {
                 sh 'docker run -d --rm -p 8090:8090 --name calculator p0ria/calculator'
             }
         }
+
+        stage('Acceptance test') {
+            steps {
+                sleep 100
+                sh 'chmod +x acceptance_test.sh && ./acceptance_test.sh'
+            }
+        }
     }
 }
