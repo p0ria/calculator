@@ -57,8 +57,12 @@ pipeline {
         }
 
         stage('Docker push') {
+            environment {
+                DOCKER_HUB_USERNAME = withCredentials('DOCKER_HUB_USERNAME')
+            }
+
             steps {
-                sh 'docker login -u p0ria -p r@h3Madrese'
+                sh 'docker login -u $DOCKER_HUB_USERNAME -p r@h3Madrese'
                 sh 'docker push p0ria/calculator'
             }
         }
