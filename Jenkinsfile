@@ -66,5 +66,11 @@ pipeline {
                 }
             }
         }
+
+        stage('Deploy to staging') {
+            steps {
+                sh 'docker run -d --rm -p 8090:8090 --name calculator p0ria/calculator'
+            }
+        }
     }
 }
