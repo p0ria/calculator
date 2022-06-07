@@ -55,5 +55,11 @@ pipeline {
                 sh 'docker build -t p0ria/calculator .'
             }
         }
+
+        stage('Docker push') {
+            step {
+                sh 'docker push p0ria/calculator'
+            }
+        }
     }
 }
