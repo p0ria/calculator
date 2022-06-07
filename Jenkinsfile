@@ -58,6 +58,7 @@ pipeline {
 
         stage('Docker push') {
             steps {
+                sh 'docker login -u p0ria -p r@h3Madrese'
                 sh 'docker push p0ria/calculator'
             }
         }
