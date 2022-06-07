@@ -57,10 +57,6 @@ pipeline {
         }
 
         stage('Docker push') {
-            environment {
-                DOCKER_HUB_USERNAME = withCredentials('DOCKER_HUB_USERNAME')
-            }
-
             steps {
                 withCredentials([usernamePassword(credentialsId: '3292f693-f1f0-4711-8fb6-937274180bbe', passwordVariable: 'DOCKER_HUB_PASSWORD', usernameVariable: 'DOCKER_HUB_USERNAME')]) {
                     sh "docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD"
