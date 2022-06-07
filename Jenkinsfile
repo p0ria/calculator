@@ -69,16 +69,20 @@ pipeline {
 
         stage('Deploy to staging') {
             steps {
-                sh 'docker rm calculator --force'
                 sh 'docker run -d --rm -p 8090:8090 --name calculator p0ria/calculator'
             }
         }
 
         stage('Acceptance test') {
             steps {
-                sleep 100
+                sleep 60
                 sh 'chmod +x acceptance_test.sh && ./acceptance_test.sh'
             }
+        }
+    }
+    post {
+        always {
+            sh 'docket stop calculator'
         }
     }
 }
